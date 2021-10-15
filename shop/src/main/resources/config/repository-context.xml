@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <context:property-placeholder location="classpath:application.properties"/>
+    <bean id="itemRepo" class="org.shop.repository.map.ItemMapRepository"/>
+    <bean id="orderRepo" class="org.shop.repository.map.OrderMapRepository">
+        <constructor-arg value="${initialsequence}"/>
+    </bean>
+    <bean id="productRepo" class="org.shop.repository.map.ProductMapRepository"/>
+    <bean id="proposalRepo" class="org.shop.repository.map.ProposalMapRepository"/>
+    <bean id="sellerRepo" class="org.shop.repository.map.SellerMapRepository"/>
+    <bean id="userFactory" class="org.shop.repository.factory.UserRepositoryFactory"/>
+    <bean id="userRepo" factory-bean="userFactory" factory-method="createUserRepository"/>
+</beans>
